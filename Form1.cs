@@ -49,16 +49,5 @@ namespace LogoKaresz
             }
 
         }
-
-		void KochRect(double size, int year)
-		{
-            double angle = 360 / 8;
-            for (int i = 0; i < 8; i++)
-			{
-				
-				Koch(size, year);
-				Jobbra(angle);
-			}
-		}
 	}
 }
