@@ -16,35 +16,30 @@ namespace LogoKaresz
 			/* Ezt indítja a START gomb! */
 			using (new Frissítés(false))
 			{
-                Jobbra(90);
-				Koch(120, 3);
+                DenseningFlower(300, 5, 9);
             }
 			
 		}
 
-
-		void Koch(double size, int year, int left = 1)
+        void DenseningFlower(double size, int year, int startCount)
 		{
-			if (year == 1)
-			{
-				Előre(size);
-			} else
-			{
-				double smallSize = size / 3;
+            if(year > 0)
+            {
+                double count = 360 / startCount;
+                for ( double i = 0; i < 360; i+=count)
+                {
+                    Bezier_3_pontos(
+                        new Pont(size * 0.66, size),
+                        new Pont(-size * 0.66, size),
+                        new Pont(0, 0),
+                        false,
+                        false
+                    );
 
-                Koch(smallSize, year-1);
-                Balra(90*left);
+                    Jobbra(count);
+                }
 
-                Koch(smallSize, year - 1, -1);
-                Jobbra(90*left);
-
-                Koch(smallSize, year - 1);
-                Jobbra(90 * left);
-
-                Koch(smallSize, year - 1, -1);
-                Balra(90 * left);
-
-                Koch(smallSize, year - 1);
+                DenseningFlower(size / 2, year-1, startCount+1);
 
             }
 
