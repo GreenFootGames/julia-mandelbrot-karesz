@@ -25,20 +25,17 @@ namespace LogoKaresz
         #endregion
         
         #region Teleport
-        bool teleportált_e_már = false;
+        // bool teleportált_e_már = false;
         void Teleport(int x, int y, double ir = észak) => Teleport(new Point(x, y), ir);
         void Teleport(double x, double y, double ir = észak) => Teleport(new Pont(x, y), ir);
         void Teleport(Pont p, double ir = észak) => Teleport(p.ToPoint(), ir);
         void Teleport(Point p, double ir = észak)
         {
-            if (teleportált_e_már)
-                System.Windows.Forms.MessageBox.Show("Csak egyszer lehet teleportálni!");
-            else
-            {
+
                 defaultkaresz.Irány = ir;
                 defaultkaresz.Teleport(p);
-                teleportált_e_már = true;
-            }
+               // teleportált_e_már = true;
+
         }
         #endregion
 
