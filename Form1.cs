@@ -8,26 +8,29 @@ namespace LogoKaresz
 	public partial class Form1 : Form
 	{
         /* Params */
-        int MAX_ITER = 100;
+        int MAX_ITER = 100; // Set precision
+
+        #region Area in pixels
         double WIDTH = 440;
         double HEIGHT = 440;
+        #endregion
 
-        double RE_START = -2;
-        double RE_END = 2;
-        double IM_START = -2;
-        double IM_END = 2;
-
+        #region Complex plane borders
+        double RE_START = -2;   // X axis (real) start
+        double RE_END = 2;      // X axis (real) end
+        double IM_START = -2;   // Y axis (imaginary) start
+        double IM_END = 2;      // Y axis (imaginary) end
+        #endregion
 
         // −0.8 + 0.156i - Dragon
         // 0.285 + 0.01i - Orchidea
         // −0.4 + 0.6i - Cauliflower
 
         double[] c = { -0.8, 0.156 }; // Constant for the Julia-set
-
-
+        
+        /* End Params */
 		void FELADAT()
 		{
-			/* Ezt indítja a START gomb! */
             using(new Frissítés(false))
             {
                 // MandelbrotSet();
