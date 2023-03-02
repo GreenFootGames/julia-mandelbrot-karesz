@@ -9,8 +9,8 @@ namespace LogoKaresz
 	{
         /* Params */
         int MAX_ITER = 100;
-        double WIDTH = 300;
-        double HEIGHT = 300;
+        double WIDTH = 440;
+        double HEIGHT = 440;
 
         double RE_START = -2;
         double RE_END = 2;
@@ -30,9 +30,9 @@ namespace LogoKaresz
 			/* Ezt indítja a START gomb! */
             using(new Frissítés(false))
             {
-                // MandelbrotSet();
-                JuliaSet(c);
-
+                MandelbrotSet();
+                // JuliaSet(c);
+               // Teleport(0, 0);
             }
         }
 
@@ -53,7 +53,7 @@ namespace LogoKaresz
                     int color = 255 - (j * 255 / MAX_ITER);
                     Tollszín(Color.FromArgb(255, color, color, color));
 
-                    Teleport(x + 400, y + 100);
+                    Teleport(x + 150, y + 2);
                     Előre(1);
                     Hátra(1);
                 }
@@ -76,7 +76,7 @@ namespace LogoKaresz
                     int color = 255 - (j * 255 / MAX_ITER);
                     Tollszín(Color.FromArgb(255, color, color, color));
 
-                    Teleport(x + 400, y + 100);
+                    Teleport(x + 150, y + 2);
                     Előre(1);
                     Hátra(1);
                 }
