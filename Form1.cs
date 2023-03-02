@@ -30,14 +30,14 @@ namespace LogoKaresz
 			/* Ezt indítja a START gomb! */
             using(new Frissítés(false))
             {
-                MandelbrotSet();
-                // JuliaSet(c);
-               // Teleport(0, 0);
+                // MandelbrotSet();
+                JuliaSet(c);
             }
         }
 
         /* Functions */
 
+        #region Julia-set
         void JuliaSet(double[] cons)
         {
             for (int x = 0; x < WIDTH; x++)
@@ -61,6 +61,23 @@ namespace LogoKaresz
         }
 
 
+        int Julia(double[] z, double[] cons)
+        {
+            int n = 0;
+
+            while (Math.Abs(z[0]) <= 2 && Math.Abs(z[1]) <= 2 && n < MAX_ITER)
+            {
+                z = SquareComplex(z);
+                z = AddComplex(z, cons);
+                n++;
+
+            }
+            return n;
+
+        }
+        #endregion
+
+        #region Mandelbrot-set
         void MandelbrotSet()
         {
             for (int x = 0; x < WIDTH; x++)
@@ -83,24 +100,6 @@ namespace LogoKaresz
             }
         }
 
-
-
-        int Julia(double[] z, double[] cons)
-        {
-            int n = 0;
-
-            while (Math.Abs(z[0]) <= 2 && Math.Abs(z[1]) <= 2 && n < MAX_ITER)
-            {
-                z = SquareComplex(z);
-                z = AddComplex(z, cons);
-                n++;
-
-            }
-            return n;
-
-        }
-
-
         int Mandelbrot(double[] cons)
         {
             int n = 0;
@@ -115,8 +114,9 @@ namespace LogoKaresz
             return n;
 
         }
+        #endregion
 
-
+        #region Complex Arithmetic
         double[] SquareComplex(double[] z)
         {
             double[] a = { z[0] * z[0] - z[1] * z[1], 2 * z[0] * z[1] };
@@ -128,6 +128,6 @@ namespace LogoKaresz
             double[] a = { z[0] + b[0], z[1] + b[1] };
             return a;
         }
-
+        #endregion
     }
 }
