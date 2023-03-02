@@ -21,10 +21,8 @@ namespace LogoKaresz
         // −0.8 + 0.156i - Dragon
         // 0.285 + 0.01i - Orchidea
         // −0.4 + 0.6i - Cauliflower
-        // 0.7885 * e^{ia} - BEST THING!! (a is in range 0..2pi)
-        // 0.7785 * e^{ia} - pi is at twin mandelbrot (a is in range 0..2pi)
 
-        double[] c = { 0.285, 0.01 };
+        double[] c = { -0.8, 0.156 }; // Constant for the Julia-set
 
 
 		void FELADAT()
@@ -40,18 +38,41 @@ namespace LogoKaresz
 
         /* Functions */
 
-        void JuliaSet/*MandelbrotSet*/(double[] cons)
+        void JuliaSet(double[] cons)
         {
             for (int x = 0; x < WIDTH; x++)
             {
                 for (int y = 0; y < HEIGHT; y++)
                 {
-                    double[] z/*cons*/ = { 
+                    double[] z = { 
                         RE_START + (x / WIDTH) * (RE_END - RE_START),
                         IM_START + (y / HEIGHT) * (IM_END - IM_START) 
                             };
 
-                    int j = Julia/*Mandelbrot*/(z, cons);
+                    int j = Julia(z, cons);
+                    int color = 255 - (j * 255 / MAX_ITER);
+                    Tollszín(Color.FromArgb(255, color, color, color));
+
+                    Teleport(x + 400, y + 100);
+                    Előre(1);
+                    Hátra(1);
+                }
+            }
+        }
+
+
+        void MandelbrotSet()
+        {
+            for (int x = 0; x < WIDTH; x++)
+            {
+                for (int y = 0; y < HEIGHT; y++)
+                {
+                    double[] cons = {
+                        RE_START + (x / WIDTH) * (RE_END - RE_START),
+                        IM_START + (y / HEIGHT) * (IM_END - IM_START)
+                            };
+
+                    int j = Mandelbrot(cons);
                     int color = 255 - (j * 255 / MAX_ITER);
                     Tollszín(Color.FromArgb(255, color, color, color));
 
@@ -64,10 +85,10 @@ namespace LogoKaresz
 
 
 
-        int Julia/*Mandelbrot*/(double[] z, double[] cons)
+        int Julia(double[] z, double[] cons)
         {
             int n = 0;
-            // double[] z = { 0, 0 };
+
             while (Math.Abs(z[0]) <= 2 && Math.Abs(z[1]) <= 2 && n < MAX_ITER)
             {
                 z = SquareComplex(z);
@@ -78,6 +99,23 @@ namespace LogoKaresz
             return n;
 
         }
+
+
+        int Mandelbrot(double[] cons)
+        {
+            int n = 0;
+            double[] z = { 0, 0 };
+            while (Math.Abs(z[0]) <= 2 && Math.Abs(z[1]) <= 2 && n < MAX_ITER)
+            {
+                z = SquareComplex(z);
+                z = AddComplex(z, cons);
+                n++;
+
+            }
+            return n;
+
+        }
+
 
         double[] SquareComplex(double[] z)
         {
