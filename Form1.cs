@@ -7,11 +7,10 @@ namespace LogoKaresz
 	public partial class Form1 : Form
 	{
         /* Params */
-        int MAX_ITER = 100; // Set precision
 
         #region Area in pixels
-        double WIDTH = 440;
-        double HEIGHT = 440;
+        double WIDTH = 460;
+        double HEIGHT = 460;
         #endregion
 
         #region Complex plane borders
@@ -21,21 +20,29 @@ namespace LogoKaresz
         double IM_END = 2;      // Y axis (imaginary) end
         #endregion
 
-        // −0.8 + 0.156i - Dragon
-        // 0.285 + 0.01i - Orchidea
-        // −0.4 + 0.6i - Cauliflower
+        #region Julia-set cool coordinates
+        // -0.8, 0.156 - Dragon (−0.8 + 0.156i)
+        // 0.285, 0.01 - Orchidea (0.285 + 0.01i)
+        // -0.4, 0.6 - Cauliflower (−0.4 + 0.6i)
+        // -0.7785, 0.0001 - Twin Mandelbrot (-0.7785 + 0.0001i)
+        // -0.2, 0.7 - Spirals (-0.2 + 0.7i)
+        #endregion
 
+        int MAX_ITER = 100; // Set precision
         double[] c = { -0.8, 0.156 }; // Constant for the Julia-set
-        
+
         /* End Params */
-		void FELADAT()
-		{
-            using(new Frissítés(false))
+
+
+        void FELADAT()
+        {
+            using (new Frissítés(false))
             {
                 // MandelbrotSet();
                 JuliaSet(c);
             }
         }
+
 
         /* Functions */
 
@@ -46,9 +53,9 @@ namespace LogoKaresz
             {
                 for (int y = 0; y < HEIGHT; y++)
                 {
-                    double[] z = { 
+                    double[] z = {
                         RE_START + (x / WIDTH) * (RE_END - RE_START),
-                        IM_START + (y / HEIGHT) * (IM_END - IM_START) 
+                        IM_START + (y / HEIGHT) * (IM_END - IM_START)
                             };
 
                     int j = Julia(z, cons);
@@ -131,5 +138,7 @@ namespace LogoKaresz
             return a;
         }
         #endregion
+
+        /* End Functions */
     }
 }
