@@ -9,8 +9,8 @@ namespace LogoKaresz
         /* Params */
 
         #region Area in pixels
-        double WIDTH = 460;
-        double HEIGHT = 460;
+        double WIDTH = 420;
+        double HEIGHT = 420;
         #endregion
 
         #region Complex plane borders
